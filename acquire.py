@@ -6,7 +6,7 @@ def get_titanic_data():
     filename = "titanic.csv"
 
     if os.path.isfile(filename):
-        return pd.read_csv(filename)
+        return pd.read_csv(filename, index_col = 0)
     else:
         # read the SQL query into a dataframe
         df = pd.read_sql('SELECT * FROM passengers', get_db_url('titanic_db'))
@@ -21,10 +21,10 @@ def get_iris_data():
     filename = "iris.csv"
 
     if os.path.isfile(filename):
-        return pd.read_csv(filename)
+        return pd.read_csv(filename, index_col = 0)
     else:
         # read the SQL query into a dataframe
-        df = pd.read_sql('''SELECT * FROM species
+        df = pd.read_sql('''SELECT species_name, measurements.* FROM species 
                             JOIN measurements ON species.species_id = measurements.species_id;''', get_db_url('iris_db'))
 
         # Write that dataframe to disk for later. Called "caching" the data for later.
@@ -37,7 +37,7 @@ def get_telco_data():
     filename = "telco_churn.csv"
 
     if os.path.isfile(filename):
-        return pd.read_csv(filename)
+        return pd.read_csv(filename, index_col = 0)
     else:
         # read the SQL query into a dataframe
         df = pd.read_sql('''SELECT * FROM customers
