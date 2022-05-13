@@ -1,3 +1,10 @@
+import pandas as pd
+import numpy as np
+# train test split from sklearn
+from sklearn.model_selection import train_test_split
+# imputer from sklearn
+from sklearn.impute import SimpleImputer
+
 #Clean Titanic Data Files:
 
 def clean_titanic_data(df):
@@ -51,6 +58,6 @@ def clean_iris_data(df):
 
 def prep_iris(df):
     df = clean_iris_data(df)
-    train, test = train_test_split(df, train_size = 0.2, stratify = df.species, random_state = 1234)
-    train, validate = train_test_split(train, train_size = 0.3, stratify = train.species, random_state = 1234)
+    train, test = train_test_split(df, train_size = 0.8, stratify = df.species, random_state = 1234)
+    train, validate = train_test_split(train, train_size = 0.8, stratify = train.species, random_state = 1234)
     return train, validate, test
