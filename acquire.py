@@ -25,7 +25,7 @@ def get_iris_data():
     else:
         # read the SQL query into a dataframe
         df = pd.read_sql('''SELECT species_name, measurements.* FROM species 
-                            JOIN measurements ON species.species_id = measurements.species_id;''', get_db_url('iris_db'))
+                        JOIN measurements ON species.species_id = measurements.species_id;''', get_db_url('iris_db'))
 
         # Write that dataframe to disk for later. Called "caching" the data for later.
         df.to_csv(filename)
